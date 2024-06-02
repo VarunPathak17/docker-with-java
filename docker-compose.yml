@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - "3030:3030"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/shopping
+      - SPRING_DATASOURCE_USERNAME=shopping
+      - SPRING_DATASOURCE_PASSWORD=varun
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=shopping
+      - POSTGRES_PASSWORD=varun
