@@ -11,14 +11,14 @@ services:
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/shopping
-      - SPRING_DATASOURCE_USERNAME=shopping
-      - SPRING_DATASOURCE_PASSWORD=varun
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/${database_name}
+      - SPRING_DATASOURCE_USERNAME=${username}
+      - SPRING_DATASOURCE_PASSWORD=${password}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
     environment:
-      - POSTGRES_USER=shopping
-      - POSTGRES_PASSWORD=varun
+      - POSTGRES_USER=${username}
+      - POSTGRES_PASSWORD=${password}
